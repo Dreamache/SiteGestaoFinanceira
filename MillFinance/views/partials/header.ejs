@@ -1,0 +1,25 @@
+<header class="mb-auto welcBorder">
+    <div>
+      
+        <% if(user){ %>
+            <h3 class="float-md-start mb-0 text-white bg-text" href="#">MilianFinance</h3>
+            <nav class="nav nav-masthead justify-content-center float-md-end">
+            <div class="dropdown">
+                <a class="btn btn-sm btn-secondary fw-bold bg-white dropdown-toggle" aria-current="page" aria-expanded="false" data-bs-toggle="dropdown" href="" ><%= user.username %></a>
+    
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                  <li><a class="dropdown-item" href="/">Log out</a></li>
+                </ul>
+            </div>
+            </nav>
+
+        <%} else{ %>
+            <h3 class="float-md-start mb-0 text-white" href="/">MilianFinance</h3>
+            <nav class="nav nav-masthead justify-content-center float-md-end">
+            <h6 style="margin-right: 5px; margin-top: 5px;" class="text-white">Already have an account?</h6>
+            <a class="btn btn-sm btn-secondary fw-bold bg-white" aria-current="page" href="/signin">Log in</a>
+           </nav>
+        <% } %>            
+    
+    </div>
+</header>

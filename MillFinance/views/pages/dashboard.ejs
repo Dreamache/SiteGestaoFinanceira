@@ -1,0 +1,107 @@
+<% contentFor('body') %>
+<style>
+    .bd-placeholder-img {
+      font-size: 1.125rem;
+      text-anchor: middle;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      user-select: none;
+    }
+
+    @media (min-width: 768px) {
+      .bd-placeholder-img-lg {
+        font-size: 3.5rem;
+      }
+    }
+  </style>
+
+  
+</head>
+<body>
+  
+    <%- include('../partials/dashHeader.ejs') %>
+
+<div class="container-fluid">
+<div class="row">
+  
+    <%- include('../partials/sidebar.ejs') %>
+
+  <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+    
+    <%- include('../partials/dashTop.ejs') %>
+
+
+    <% var valueRev=[] %>
+    <% items.forEach((item)=>{ %>
+      <% valueRev.push(item.value) %>
+    <% }) %>
+
+    <% var valueExp=[] %>
+    <% itoms.forEach((item)=>{ %>
+      <% valueExp.push(item.value) %>
+    <% }) %>
+
+    <div id="chart" style="width: max-content;"></div>  
+
+  </main>
+</div>
+</div>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript">
+  google.charts.load('current', {'packages':['corechart']});
+  google.charts.setOnLoadCallback(drawChart);
+
+  var items=[];
+
+  var v= `<%= valueRev %>`;
+  var e= `<%= valueExp %>`;
+
+  var valuesR= v.split(",");
+  var valuesE= e.split(",");
+
+  var valuesRev=0
+  var valuesExp=0
+
+  valuesR.forEach((rev)=>{
+    valuesRev+=parseFloat(rev);
+  });
+  valuesE.forEach((exp)=>{
+    valuesExp+=parseFloat(exp);
+  });
+
+  var valuesTot= (parseFloat(valuesRev)-parseFloat(valuesExp));
+
+  console.log(valuesRev);
+  console.log(valuesExp);
+  console.log(valuesTot);
+
+  items[0]= ["Revenues", parseFloat(valuesRev)];
+  items[1]= ["Expenses", -parseFloat(valuesExp)];
+  items[2]= ["Total", parseFloat(valuesTot)];
+
+  function drawChart(){
+    const container= document.querySelector('#chart');
+    const data= new google.visualization.arrayToDataTable([
+      ['Type', 'Total', {role: 'style'}],
+      [items[0][0], {v:items[0][1], f:items[0][1].toFixed(2)}, '#43A83F'],
+      [items[1][0], {v:items[1][1], f:items[1][1].toFixed(2)}, '#C61E1E'],
+      [items[2][0], {v:items[2][1], f:items[2][1].toFixed(2)}, '#4163A8']
+    ]);
+    const options={
+      title:'Balance',
+      height: 400,
+      width: 900,
+      bar: {groupWidth:"50%"}
+    }
+    const chart= new google.visualization.ColumnChart(container);
+    chart.draw(data, options);
+  }
+
+
+</script>
+
+
+  <script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js" integrity="sha384-uO3SXW5IuS1ZpFPKugNNWqTZRRglnUJK6UAZ/gxOX80nxEkN9NcGZTftn6RzhGWE" crossorigin="anonymous"></script><script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js" integrity="sha384-zNy6FEbO50N+Cg5wap8IKA4M/ZnLJgzc6w2NqACZaK0u0FXfOWRRJOnQtpZun8ha" crossorigin="anonymous"></script>
+</body>

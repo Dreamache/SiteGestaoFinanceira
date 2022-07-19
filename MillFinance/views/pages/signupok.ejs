@@ -1,0 +1,18 @@
+<body class="bg-dark">
+<main class="form-signup">
+    <div class="alert alert-success" role="alert">
+        Sign up successful!
+    </div>
+    <p class="text-white">
+        you-re now being redirected <b>2 seconds</b>.
+         
+    </p>
+    <p class="text-white">
+       however if you-re not redirected <a href="/signin">click here</a>
+    </p>
+</main>
+</body>
+<script>
+    console.log("waiting")
+    setTimeout(function() {window.location.href = "/signin"}, 4000);
+</script>

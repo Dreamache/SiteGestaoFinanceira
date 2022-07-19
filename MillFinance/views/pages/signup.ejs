@@ -1,0 +1,43 @@
+<% contentFor('body') %>
+
+<body class="h-100 text-center bg-dark" style="margin-bottom: 3cm;">
+
+<main class="form-signup">
+    
+    <form method="post" action="/signup">
+
+        <h1 class="h3 mb-3 fw-normal formh1">Sign up</h1>
+
+        <% if (error) { %>
+        <div class="alert alert-danger" role="alert">
+          <%= error.message %>
+        </div>
+        <% } %>
+
+        <div class="form-floating">
+
+          <% if (values) { %>
+            <input type="text" class="form-control" id="floatingInput" placeholder="Username" name="username" value="<%= values.username %>">
+          <% } else { %>
+            <input type="text" class="form-control" id="floatingInput" placeholder="Username" name="username">
+          <% } %>    
+          
+          <label for="floatingInput">Username</label>
+        </div>
+
+        <div class="form-floating" style="margin-top: 0.25cm;">
+            <input type="password" class="form-control" id="floatingPassword" placeholder="Password" name="password">
+          <label for="floatingPassword">Password</label>
+          
+        </div>
+
+        <div class="form-floating">
+            <input type="password" class="form-control" id="floatingPasswordConfirmation" placeholder="Password" name="passwordC">
+            <label for="floatingPasswordConfirmation">Confirm Password</label>
+        </div>
+
+        <button type="submit" class="w-100 btn btn-lg btn-primary">Sign up</button>
+      </form>
+
+</main>
+</body>

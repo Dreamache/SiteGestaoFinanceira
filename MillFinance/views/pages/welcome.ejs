@@ -1,0 +1,32 @@
+<% contentFor('body') %>
+<style>
+    .bd-placeholder-img {
+      font-size: 1.125rem;
+      text-anchor: middle;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      user-select: none;
+    }
+
+    @media (min-width: 768px) {
+      .bd-placeholder-img-lg {
+        font-size: 3.5rem;
+      }
+    }
+  </style>
+  
+<body class="d-flex h-100 text-center text-white bg-dark">
+  
+<div class="cover-container d-flex w-50 h-100 p-3 mx-auto flex-column">
+  <%- include('../partials/header.ejs') %>
+
+<main class="px-3">
+    <h1 class="welcomeMsg">Hey! Welcome to MilianFinances</h1>
+    <p class="lead">Work on your finances quickly and easily and track expenses and revenues.</p>
+    <p class="lead">
+        <a href="/signup" class="btn btn-lg btn-secondary fw-bold border-white bg-white">Sign up now!(it's free)</a>
+    </p>
+</main>
+
+</div>
+</body>

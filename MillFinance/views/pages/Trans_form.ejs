@@ -1,0 +1,111 @@
+<%- include('../partials/dashHeader.ejs') %>
+<main class="form-signup">  
+    <form method="post" action="<%= option.url%>">
+        <h1 class="h3 mb-3 fw-normal"><%= option.formName %></h1>
+
+        <% if (error) { %>
+            <div class="alert alert-danger" role="alert">
+              <%= error.message %>
+            </div>
+        <% } %>
+
+        <div class="form-floating">
+            <% if(option.transaction) {%>
+                <input type="hidden" class="form-control" id="floatingInput" placeholder="transaction id" name="id" value="<%= option.transaction.id %>"> 
+            <% } else{%>
+                <input type="hidden" class="form-control" id="floatingInput" placeholder="transaction id" name="id"> 
+            <% } %>    
+        </div>
+        <div class="form-floating">
+            <% if(option.transaction) {%>
+                <input type="text" class="form-control" id="floatingInput" placeholder="Name" name="name", value="<%= option.transaction.name %>">
+            <% } else{%>
+                <input type="text" class="form-control" id="floatingInput" placeholder="transaction name" name="name"> 
+            <% } %>     
+            <label for="floatingInput">Name</label>
+        </div>
+        <div class="form-floating">
+            <% if(option.transaction) {%>
+                <input type="number" step=".01" min="0" class="form-control" id="floatingInput" placeholder="Value" name="value", value="<%= option.transaction.value %>"> 
+            <% } else{%>
+                <input type="number" step=".01" min="0" class="form-control" id="floatingInput" placeholder="Value" name="value"> 
+            <% } %>         
+            <label for="floatingInput">Value</label>
+        </div>
+
+            <% if(option.action){ %>
+                <% if(option.type=="rev"){ %>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" id="radioRev" name="type" value=1 checked>
+                        <label class="form-check-label" for="radioRev">
+                          Revenue
+                        </label>
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" type="radio" id="radioExp" name="type" value=2 disabled>
+                        <label class="form-check-label" for="radioExp">
+                          Expense
+                        </label>
+                    </div>
+                <% } else{ %>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" id="radioRev" name="type" value=1 disabled>
+                        <label class="form-check-label" for="radioRev">
+                          Revenue
+                        </label>
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" type="radio" id="radioExp" name="type" value=2 checked>
+                        <label class="form-check-label" for="radioExp">
+                          Expense
+                        </label>
+                    </div>
+                <% } %>    
+                
+            <% } else{ %>
+                <% if(option.type=="rev"){ %>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" id="radioRev" name="type" value=1 checked>
+                        <label class="form-check-label" for="radioRev">
+                          Revenue
+                        </label>
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" type="radio" id="radioExp" name="type" value=2 disabled>
+                        <label class="form-check-label" for="radioExp">
+                          Expense
+                        </label>
+                    </div>
+                <% } else if(option.type=="exp"){ %>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" id="radioRev" name="type" value=1 disabled>
+                        <label class="form-check-label" for="radioRev">
+                          Revenue
+                        </label>
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" type="radio" id="radioExp" name="type" value=2 checked>
+                        <label class="form-check-label" for="radioExp">
+                          Expense
+                        </label>
+                    </div>
+                <% } else{ %>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" id="radioRev" name="type" value=1>
+                        <label class="form-check-label" for="radioRev">
+                          Revenue
+                        </label>
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" type="radio" id="radioExp" name="type" value=2>
+                        <label class="form-check-label" for="radioExp">
+                          Expense
+                        </label>
+                    </div>
+                <% } %>     
+
+            <% } %>  
+
+        <button type="submit" class="w-100 btn btn-lg btn-primary">Save</button>
+    </form>
+</main>
